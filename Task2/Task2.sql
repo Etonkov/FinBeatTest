@@ -62,3 +62,8 @@ GROUP BY
 	2
 HAVING
 	COUNT(*) > 2;
+
+--Drop tables
+DROP TABLE IF EXISTS public."ClientContacts";
+DROP TABLE IF EXISTS public."Clients";
+
