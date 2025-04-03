@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinBeatTestBackend.Api", "FinBeatTestBackend.Api\FinBeatTestBackend.Api.csproj", "{13ACE595-F9B0-4E78-B69A-87F685B52E45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinBeatTestBackend.Service", "FinBeatTestBackend.Service\FinBeatTestBackend.Service.csproj", "{0CA3A08F-6ACC-49E9-9FCD-A56254ACA4B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinBeatTestBackend.Data", "FinBeatTestBackend.Data\FinBeatTestBackend.Data.csproj", "{72419948-75D2-4A02-B8C2-FC0C0EDD9451}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13ACE595-F9B0-4E78-B69A-87F685B52E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13ACE595-F9B0-4E78-B69A-87F685B52E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13ACE595-F9B0-4E78-B69A-87F685B52E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13ACE595-F9B0-4E78-B69A-87F685B52E45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CA3A08F-6ACC-49E9-9FCD-A56254ACA4B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CA3A08F-6ACC-49E9-9FCD-A56254ACA4B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CA3A08F-6ACC-49E9-9FCD-A56254ACA4B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA3A08F-6ACC-49E9-9FCD-A56254ACA4B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72419948-75D2-4A02-B8C2-FC0C0EDD9451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72419948-75D2-4A02-B8C2-FC0C0EDD9451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72419948-75D2-4A02-B8C2-FC0C0EDD9451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72419948-75D2-4A02-B8C2-FC0C0EDD9451}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
