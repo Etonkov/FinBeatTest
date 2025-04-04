@@ -10,5 +10,6 @@ public class DataItemModel
     public int Code { get; set; }
 
     [Required]
+    [MaxLength(200)]
     public required string Value { get; set; }
 }

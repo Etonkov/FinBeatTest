@@ -37,6 +37,7 @@ public class Program
             using AppDbContext dbContext = lifetimeScope.ServiceProvider.GetRequiredService<AppDbContext>();
             dbContext.Database.EnsureCreated();
         }
+
         app.UseHttpsRedirection();
         app.MapControllers();
         app.Run();
