@@ -3,6 +3,7 @@ using FinBeatTestBackend.Data.Helpers;
 using FinBeatTestBackend.Data.Model;
 using FinBeatTestBackend.Service.DataItem.Dto;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace FinBeatTestBackend.Service.DataItem;
 
@@ -15,19 +16,30 @@ public class DataItemService(AppDbContext dbContext) : IDataItemService
             .OrderBy(kvp => kvp.Key)
             .ToDictionary();
 
-        // Truncate table
-        await dbContext.DataItems.TruncateAsync();
+        await using IDbContextTransaction transaction = await dbContext.Database.BeginTransactionAsync();
 
-        // New data
-        IEnumerable<DataItemModel> entities = sortedItems.Select((item, index) => new DataItemModel
+        try
         {
-            Id = index + 1,
-            Code = item.Key,
-            Value = item.Value
-        });
+            // Truncate table
+            await dbContext.DataItems.TruncateAsync();
 
-        await dbContext.DataItems.AddRangeAsync(entities);
-        await dbContext.SaveChangesAsync();
+            // New data
+            IEnumerable<DataItemModel> entities = sortedItems.Select((item, index) => new DataItemModel
+            {
+                Id = index + 1,
+                Code = item.Key,
+                Value = item.Value
+            });
+
+            await dbContext.DataItems.AddRangeAsync(entities);
+            await dbContext.SaveChangesAsync();
+            await transaction.CommitAsync();
+        }
+        catch (Exception)
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
     }
 
     public async Task<GetDataItemsResponseDto> GetDataItemsAsync(
