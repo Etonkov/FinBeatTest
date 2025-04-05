@@ -8,7 +8,7 @@ namespace FinBeatTestBackend.Service.DataItem;
 
 public class DataItemService(AppDbContext dbContext) : IDataItemService
 {
-    public async Task SetDataItemsAsync(IEnumerable<KeyValuePair<string, string>> items)
+    public async Task SetDataItemsAsync(IEnumerable<SetDataItemRequestDto> items)
     {
         Dictionary<int, string> sortedItems = items
             .Select(kvp => new KeyValuePair<int, string>(int.Parse(kvp.Key), kvp.Value))

@@ -1,6 +1,6 @@
-using FinBeatTestBackend.Api.ValidationAttributes;
 using FinBeatTestBackend.Service.DataItem;
 using FinBeatTestBackend.Service.DataItem.Dto;
+using FinBeatTestBackend.Service.ValidationAttributes.SetDataItemRequest;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinBeatTestBackend.Api.Controllers;
@@ -11,11 +11,8 @@ public class DataItemController(IDataItemService service) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> SetItemsAsync(
-        [FromBody]
-        [ValidateDictionaryValuesRequired]
-        [ValidateDictionaryValuesLength(200)]
-        [ValidateDictionaryKeysIsNumber]
-        Dictionary<string, string> inputData)
+        [FromBody] [DataItemKeyUnique] [DataItemValueUnique]
+        IEnumerable<SetDataItemRequestDto> inputData)
     {
         await service.SetDataItemsAsync(inputData);
         return Ok();

@@ -4,7 +4,7 @@ namespace FinBeatTestBackend.Service.DataItem;
 
 public interface IDataItemService
 {
-    Task SetDataItemsAsync(IEnumerable<KeyValuePair<string, string>> items);
+    Task SetDataItemsAsync(IEnumerable<SetDataItemRequestDto> items);
 
     Task<GetDataItemsResponseDto> GetDataItemsAsync(
         int? codeFilter,

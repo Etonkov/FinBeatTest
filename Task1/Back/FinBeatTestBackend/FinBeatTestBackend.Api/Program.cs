@@ -1,7 +1,10 @@
 using Asp.Versioning;
 using FinBeatTestBackend.Data;
 using FinBeatTestBackend.Service.DataItem;
+using FinBeatTestBackend.Service.DataItem.Dto;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 
 namespace FinBeatTestBackend.Api;
 
@@ -27,7 +30,18 @@ public class Program
             options.SubstituteApiVersionInUrl = true;
             options.GroupNameFormat = "'v'VVV";
         });
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(options => options.MapType<SetDataItemRequestDto>(() => new OpenApiSchema
+        {
+            Type = "object",
+            AdditionalProperties = new OpenApiSchema
+            {
+                Type = "string"
+            },
+            Example = new OpenApiObject
+            {
+                ["1"] = new OpenApiString("value1")
+            }
+        }));
         WebApplication app = builder.Build();
         if (app.Environment.IsDevelopment())
         {
