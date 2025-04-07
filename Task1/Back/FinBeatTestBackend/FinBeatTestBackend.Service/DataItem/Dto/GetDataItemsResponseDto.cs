@@ -3,6 +3,7 @@
 public class GetDataItemsResponseDto
 {
     public int TotalCount { get; init; }
+    public int TotalPages { get; init; }
     public int PageNumber { get; init; }
     public int PageSize { get; init; }
     public IEnumerable<GetDataItemResponseDto> Items { get; init; } = Array.Empty<GetDataItemResponseDto>();

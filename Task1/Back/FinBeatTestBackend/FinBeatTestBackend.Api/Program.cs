@@ -42,15 +42,33 @@ public class Program
                 ["1"] = new OpenApiString("value1")
             }
         }));
-        WebApplication app = builder.Build();
-        if (app.Environment.IsDevelopment())
+        string? corsOrigins = builder.Configuration["Cors:Origin"];
+        if (!string.IsNullOrWhiteSpace(corsOrigins))
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-            using IServiceScope lifetimeScope = app.Services.CreateScope();
-            using AppDbContext dbContext = lifetimeScope.ServiceProvider.GetRequiredService<AppDbContext>();
-            dbContext.Database.EnsureCreated();
+            builder.Services.AddCors(options => options.AddPolicy("CorsPolicy", cp => cp
+                .WithOrigins(corsOrigins)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()));
         }
+        else
+        {
+            builder.Services.AddCors(options => options.AddPolicy("CorsPolicy", cp => cp
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .SetIsOriginAllowed(_ => true)));
+        }
+
+        WebApplication app = builder.Build();
+        app.UseCors("CorsPolicy");
+        app.UseSwagger();
+        app.UseSwaggerUI();
+
+        // TODO: remove before release
+        using IServiceScope lifetimeScope = app.Services.CreateScope();
+        using AppDbContext dbContext = lifetimeScope.ServiceProvider.GetRequiredService<AppDbContext>();
+        dbContext.Database.EnsureCreated();
 
         app.UseHttpsRedirection();
         app.MapControllers();

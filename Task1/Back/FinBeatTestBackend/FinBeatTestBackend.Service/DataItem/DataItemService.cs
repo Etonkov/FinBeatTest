@@ -63,7 +63,6 @@ public class DataItemService(AppDbContext dbContext) : IDataItemService
         // pagination
         int totalCount = await query.CountAsync();
         List<GetDataItemResponseDto> items = await query
-            .OrderBy(item => item.Code)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .Select(item => new GetDataItemResponseDto
@@ -77,6 +76,7 @@ public class DataItemService(AppDbContext dbContext) : IDataItemService
         return new GetDataItemsResponseDto
         {
             TotalCount = totalCount,
+            TotalPages = (int)Math.Ceiling((double)totalCount / pageSize),
             PageNumber = pageNumber,
             PageSize = pageSize,
             Items = items
