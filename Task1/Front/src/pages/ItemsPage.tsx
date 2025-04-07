@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { getItems } from '../api/apiClient';
-import TableComponent from '../components/Table';
-import FilterForm from '../components/FilterForm';
-import Pagination from '../components/Pagination';
-import { Container, Button, Row, Col } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { getItems } from "../api/apiClient";
+import TableComponent from "../components/Table";
+import FilterForm from "../components/FilterForm";
+import Pagination from "../components/Pagination";
+import { Container, Button, Row, Col } from "react-bootstrap";
 
 interface Item {
   id: number;
@@ -17,16 +17,21 @@ const ItemsPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10); // Number of items per page
   const [codeFilter, setCodeFilter] = useState<number | undefined>();
-  const [valueFilter, setValueFilter] = useState<string>('');
+  const [valueFilter, setValueFilter] = useState<string>("");
 
   // Function to fetch data based on filters and pagination
   const fetchItems = async () => {
     try {
-      const response = await getItems(codeFilter, valueFilter, currentPage, pageSize);
+      const response = await getItems(
+        codeFilter,
+        valueFilter,
+        currentPage,
+        pageSize
+      );
       setItems(response.data.items);
       setTotalPages(response.data.totalPages || 1);
     } catch (error) {
-      console.error('Error fetching items:', error);
+      console.error("Error fetching items:", error);
     }
   };
 
@@ -60,7 +65,8 @@ const ItemsPage: React.FC = () => {
       <Row className="mt-3 align-items-center">
         <Col>
           <p>
-            Page {currentPage} of {totalPages} | Showing {pageSize} items per page
+            Page {currentPage} of {totalPages} | Showing {pageSize} items per
+            page
           </p>
         </Col>
         <Col className="text-end">
@@ -73,7 +79,7 @@ const ItemsPage: React.FC = () => {
             value={pageSize}
             onChange={handlePageSizeChange}
             className="ms-2"
-            style={{ padding: '5px' }}
+            style={{ padding: "5px" }}
           >
             <option value="5">5</option>
             <option value="10">10</option>
@@ -82,7 +88,11 @@ const ItemsPage: React.FC = () => {
           </select>
         </Col>
       </Row>
-      <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </Container>
   );
 };

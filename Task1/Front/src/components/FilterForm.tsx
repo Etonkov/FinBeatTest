@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
+import React from "react";
+import { Form, Row, Col } from "react-bootstrap";
 
 interface Props {
   codeFilter: number | undefined;
@@ -23,8 +23,12 @@ const FilterForm: React.FC<Props> = ({
             <Form.Control
               type="number"
               placeholder="Enter Code"
-              value={codeFilter || ''}
-              onChange={(e) => onCodeFilterChange(e.target.value ? parseInt(e.target.value) : undefined)}
+              value={codeFilter || ""}
+              onChange={(e) =>
+                onCodeFilterChange(
+                  e.target.value ? parseInt(e.target.value) : undefined
+                )
+              }
             />
           </Form.Group>
         </Col>

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { uploadItems } from '../api/apiClient';
-import { Button, Form, Container, Alert } from 'react-bootstrap';
+import React, { useState } from "react";
+import { uploadItems } from "../api/apiClient";
+import { Button, Form, Container, Alert } from "react-bootstrap";
 
 const UploadPage: React.FC = () => {
   const [items, setItems] = useState<Record<string, string>[]>([]);
-  const [jsonText, setJsonText] = useState<string>('');
+  const [jsonText, setJsonText] = useState<string>("");
   const [message, setMessage] = useState<string | null>(null);
 
   const handleAddItem = () => {
@@ -21,9 +21,9 @@ const UploadPage: React.FC = () => {
   const handleSubmit = async () => {
     try {
       await uploadItems(items);
-      setMessage('Data uploaded successfully!');
+      setMessage("Data uploaded successfully!");
     } catch (error) {
-      setMessage('Error uploading data.');
+      setMessage("Error uploading data.");
     }
   };
 
@@ -32,12 +32,12 @@ const UploadPage: React.FC = () => {
       const parsedItems = JSON.parse(jsonText);
       if (Array.isArray(parsedItems)) {
         setItems(parsedItems);
-        setMessage('JSON loaded successfully!');
+        setMessage("JSON loaded successfully!");
       } else {
-        setMessage('Invalid JSON format. Expected an array.');
+        setMessage("Invalid JSON format. Expected an array.");
       }
     } catch (error) {
-      setMessage('Error parsing JSON.');
+      setMessage("Error parsing JSON.");
       console.log(error);
     }
   };
@@ -45,7 +45,13 @@ const UploadPage: React.FC = () => {
   return (
     <Container className="mt-4">
       <h2>Data Upload</h2>
-      {message && <Alert variant={message.includes('successfully') ? 'success' : 'danger'}>{message}</Alert>}
+      {message && (
+        <Alert
+          variant={message.includes("successfully") ? "success" : "danger"}
+        >
+          {message}
+        </Alert>
+      )}
       <h4>Add Items Manually</h4>
       {items.map((item, index) => (
         <div key={index} className="mb-3">
@@ -54,8 +60,10 @@ const UploadPage: React.FC = () => {
             <Form.Control
               type="text"
               placeholder="Enter key"
-              value={Object.keys(item)[0] || ''}
-              onChange={(e) => handleChange(index, e.target.value, item[e.target.value])}
+              value={Object.keys(item)[0] || ""}
+              onChange={(e) =>
+                handleChange(index, e.target.value, item[e.target.value])
+              }
             />
           </Form.Group>
           <Form.Group>
@@ -63,8 +71,10 @@ const UploadPage: React.FC = () => {
             <Form.Control
               type="text"
               placeholder="Enter value"
-              value={Object.values(item)[0] || ''}
-              onChange={(e) => handleChange(index, Object.keys(item)[0], e.target.value)}
+              value={Object.values(item)[0] || ""}
+              onChange={(e) =>
+                handleChange(index, Object.keys(item)[0], e.target.value)
+              }
             />
           </Form.Group>
         </div>
@@ -87,16 +97,15 @@ const UploadPage: React.FC = () => {
       </Form.Group>
       <div>
         <Button onClick={handleJsonUpload} className="mt-2 mb-3">
-            Load JSON
+          Load JSON
         </Button>
       </div>
 
       <div>
         <Button onClick={handleSubmit} className="mt-3">
-            Upload Data
+          Upload Data
         </Button>
       </div>
-      
     </Container>
   );
 };

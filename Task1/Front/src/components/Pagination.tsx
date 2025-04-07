@@ -1,5 +1,5 @@
-import React from 'react';
-import { Pagination as BootstrapPagination } from 'react-bootstrap';
+import React from "react";
+import { Pagination as BootstrapPagination } from "react-bootstrap";
 
 interface Props {
   totalPages: number;
@@ -7,7 +7,11 @@ interface Props {
   onPageChange: (page: number) => void;
 }
 
-const Pagination: React.FC<Props> = ({ totalPages, currentPage, onPageChange }) => {
+const Pagination: React.FC<Props> = ({
+  totalPages,
+  currentPage,
+  onPageChange,
+}) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (

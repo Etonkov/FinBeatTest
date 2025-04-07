@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:5101';
+const API_BASE_URL = "http://localhost:5101";
 
 export const uploadItems = async (data: Record<string, string>[]) => {
   return await axios.post(`${API_BASE_URL}/api/v1/items`, data);
