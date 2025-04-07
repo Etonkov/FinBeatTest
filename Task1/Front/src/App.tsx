@@ -7,7 +7,7 @@ import ItemsPage from "./pages/ItemsPage";
 const App: React.FC = () => {
   return (
     <Router>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top custom-navbar">
         <Container>
           <Navbar.Brand style={{ fontSize: "2rem", fontWeight: "bold" }}>
             FinBeatTest

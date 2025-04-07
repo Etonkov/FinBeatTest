@@ -52,6 +52,29 @@ const UploadPage: React.FC = () => {
           {message}
         </Alert>
       )}
+            <div>
+        <Button onClick={handleSubmit} className="mt-3">
+          Upload Data
+        </Button>
+      </div>
+      <h4 className="mt-4">Load JSON</h4>
+      <Form.Group>
+        <Form.Label>JSON Text</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={5}
+          placeholder='Example: [{"key1": "value1"}, {"key2": "value2"}]'
+          value={jsonText}
+          onChange={(e) => {
+            setJsonText(e.target.value);
+          }}
+        />
+      </Form.Group>
+      <div>
+        <Button onClick={handleJsonUpload} className="mt-2 mb-3">
+          Load JSON
+        </Button>
+      </div>
       <h4>Add Items Manually</h4>
       {items.map((item, index) => (
         <div key={index} className="mb-3">
@@ -82,30 +105,6 @@ const UploadPage: React.FC = () => {
       <Button onClick={handleAddItem} className="me-2 mb-3">
         Add Item
       </Button>
-      <h4 className="mt-4">Load JSON</h4>
-      <Form.Group>
-        <Form.Label>JSON Text</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={5}
-          placeholder='Example: [{"key1": "value1"}, {"key2": "value2"}]'
-          value={jsonText}
-          onChange={(e) => {
-            setJsonText(e.target.value);
-          }}
-        />
-      </Form.Group>
-      <div>
-        <Button onClick={handleJsonUpload} className="mt-2 mb-3">
-          Load JSON
-        </Button>
-      </div>
-
-      <div>
-        <Button onClick={handleSubmit} className="mt-3">
-          Upload Data
-        </Button>
-      </div>
     </Container>
   );
 };
