@@ -52,7 +52,7 @@ const UploadPage: React.FC = () => {
           {message}
         </Alert>
       )}
-            <div>
+      <div>
         <Button onClick={handleSubmit} className="mt-3">
           Upload Data
         </Button>
